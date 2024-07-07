@@ -1,0 +1,1 @@
+C:\Work\hr-dynamics\HR_Dynamics\hr_dynamics.client\obj\Debug\hr_dynamics.client.esproj.CoreCompileInputs.cache
