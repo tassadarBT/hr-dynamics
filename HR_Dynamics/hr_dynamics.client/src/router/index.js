@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
-
+import PublicAppLayout from '@/layout/PublicAppLayout.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -144,10 +144,21 @@ const router = createRouter({
             ]
         },
         {
+            path: '/public',
+            component: PublicAppLayout,
+            children: [
+                {
+                    path: '/public/company-feedback-survey',
+                    name: 'company-feedback-survey',
+                    component: () => import('@/views/pages/CompanyFeedbackSurvey.vue')
+                }                
+            ]
+        },
+        {
             path: '/landing',
             name: 'landing',
             component: () => import('@/views/pages/Landing.vue')
-        },
+        },        
         {
             path: '/pages/notfound',
             name: 'notfound',
