@@ -144,7 +144,7 @@ const router = createRouter({
             ]
         },
         {
-            path: '/public',
+            path: '/',
             component: PublicAppLayout,
             children: [
                 {

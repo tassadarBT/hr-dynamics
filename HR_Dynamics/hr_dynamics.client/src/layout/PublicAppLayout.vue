@@ -1,6 +1,5 @@
 <script setup>
 import { computed, watch, ref } from 'vue';
-import PublicAppTopbar from './PublicAppTopbar.vue';
 import AppFooter from './AppFooter.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppConfig from './AppConfig.vue';
@@ -23,9 +22,8 @@ const containerClass = computed(() => {
 </script>
 
 <template>
-    <div class="layout-wrapper" :class="containerClass">
-        <public-app-topbar></public-app-topbar>        
-        <div class="layout-main-container">
+    <div class="layout-wrapper" :class="containerClass">              
+        <div class="layout-main-container" style="padding-top: 10px;">
             <div class="layout-main">
                 <router-view></router-view>
             </div>
