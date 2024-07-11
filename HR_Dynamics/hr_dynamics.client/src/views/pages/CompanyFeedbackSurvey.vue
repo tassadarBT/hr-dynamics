@@ -169,7 +169,9 @@
             <div class="col-2">
                 <div class="field">
                     <label for="department">Departament</label>
-                    <InputText id="department" type="text" v-model="data.department" />
+                    <div>
+                        <InputText id="department" type="text" v-model="data.department" />
+                    </div>
                 </div>
             </div>
             <div class="col-8">
