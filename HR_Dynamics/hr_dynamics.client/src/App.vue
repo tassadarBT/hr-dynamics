@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+    import ToastService from 'primevue/toastservice';
+</script>
 
 <template>
     <router-view />
