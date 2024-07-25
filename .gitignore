@@ -4,3 +4,8 @@
 
 /.vs
 /HR_Dynamics/.vs/HR_Dynamics
+/HR_Dynamics/hr_dynamics_data_access/obj
+/HR_Dynamics/.vs/ProjectEvaluation
+/HR_Dynamics/hr_dynamics_server/bin/Debug/net8.0
+/HR_Dynamics/hr_dynamics_server/obj
+/HR_Dynamics/hr_dynamics_services/obj
