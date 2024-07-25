@@ -1,0 +1,87 @@
+7/25/2024 2:54:25 PM	This log contains information about the import schema operation into project 'hr_dynamics_database' on computer 'DESKTOP-NVLB0I9' by user 'maria'.
+7/25/2024 2:54:25 PM	Import of database schema has started.
+7/25/2024 2:54:34 PM	Gathering database credentials
+7/25/2024 2:54:34 PM	Gathering database options
+7/25/2024 2:54:34 PM	Gathering generic database scoped configuration option
+7/25/2024 2:54:34 PM	Gathering users
+7/25/2024 2:54:34 PM	Gathering roles
+7/25/2024 2:54:34 PM	Gathering application roles
+7/25/2024 2:54:34 PM	Gathering role memberships
+7/25/2024 2:54:34 PM	Gathering filegroups
+7/25/2024 2:54:34 PM	Gathering full-text catalogs
+7/25/2024 2:54:34 PM	Gathering assemblies
+7/25/2024 2:54:34 PM	Gathering certificates
+7/25/2024 2:54:34 PM	Gathering asymmetric keys
+7/25/2024 2:54:34 PM	Gathering symmetric keys
+7/25/2024 2:54:34 PM	Gathering encrypted symmetric keys
+7/25/2024 2:54:34 PM	Gathering schemas
+7/25/2024 2:54:34 PM	Gathering XML schema collections
+7/25/2024 2:54:34 PM	Gathering user-defined data types
+7/25/2024 2:54:34 PM	Gathering user-defined types
+7/25/2024 2:54:34 PM	Gathering table types
+7/25/2024 2:54:34 PM	Gathering unique keys for table types
+7/25/2024 2:54:34 PM	Gathering primary keys for table types
+7/25/2024 2:54:34 PM	Gathering indexes for table types
+7/25/2024 2:54:34 PM	Gathering check constraints for table types
+7/25/2024 2:54:34 PM	Gathering default constraints for table types
+7/25/2024 2:54:34 PM	Gathering partition functions
+7/25/2024 2:54:34 PM	Gathering partition schemes
+7/25/2024 2:54:34 PM	Gathering functions
+7/25/2024 2:54:34 PM	Gathering encrypted functions
+7/25/2024 2:54:34 PM	Gathering aggregates
+7/25/2024 2:54:34 PM	Gathering procedures
+7/25/2024 2:54:34 PM	Gathering encrypted procedures
+7/25/2024 2:54:34 PM	Gathering tables
+7/25/2024 2:54:34 PM	Gathering primary keys
+7/25/2024 2:54:34 PM	Gathering unique constraints
+7/25/2024 2:54:34 PM	Gathering foreign keys
+7/25/2024 2:54:34 PM	Gathering default constraints
+7/25/2024 2:54:34 PM	Gathering check constraints
+7/25/2024 2:54:34 PM	Gathering views
+7/25/2024 2:54:34 PM	Gathering encrypted views
+7/25/2024 2:54:34 PM	Gathering indexes
+7/25/2024 2:54:34 PM	Gathering statistics
+7/25/2024 2:54:34 PM	Gathering full-text index stoplists
+7/25/2024 2:54:34 PM	Gathering search property lists
+7/25/2024 2:54:34 PM	Gathering search properties
+7/25/2024 2:54:34 PM	Gathering full-text indexes
+7/25/2024 2:54:34 PM	Gathering column store indexes
+7/25/2024 2:54:34 PM	Gathering spatial indexes
+7/25/2024 2:54:34 PM	Gathering XML indexes
+7/25/2024 2:54:34 PM	Gathering Selective XML indexes
+7/25/2024 2:54:34 PM	Gathering encrypted triggers
+7/25/2024 2:54:34 PM	Gathering triggers
+7/25/2024 2:54:34 PM	Gathering encrypted and clr ddl triggers
+7/25/2024 2:54:34 PM	Gathering ddl triggers
+7/25/2024 2:54:34 PM	Creating edge constraints
+7/25/2024 2:54:34 PM	Gathering synonyms
+7/25/2024 2:54:34 PM	Gathering defaults
+7/25/2024 2:54:34 PM	Gathering data constraint uddt bindings
+7/25/2024 2:54:34 PM	Gathering rules
+7/25/2024 2:54:34 PM	Gathering data constraint uddt bindings
+7/25/2024 2:54:34 PM	Gathering message types
+7/25/2024 2:54:34 PM	Gathering queues
+7/25/2024 2:54:34 PM	Gathering contracts
+7/25/2024 2:54:34 PM	Gathering services
+7/25/2024 2:54:34 PM	Gathering event notifications
+7/25/2024 2:54:34 PM	Gathering remote service bindings
+7/25/2024 2:54:34 PM	Gathering broker priorities
+7/25/2024 2:54:34 PM	Gathering signatures
+7/25/2024 2:54:34 PM	Gathering compression options
+7/25/2024 2:54:34 PM	Gathering sequence types
+7/25/2024 2:54:34 PM	Gathering security policies
+7/25/2024 2:54:34 PM	Gather column encryption keys
+7/25/2024 2:54:34 PM	Gathering column master keys
+7/25/2024 2:54:34 PM	Gathering external data sources
+7/25/2024 2:54:34 PM	Gathering external file formats
+7/25/2024 2:54:34 PM	Gathering external tables
+7/25/2024 2:54:34 PM	Gathering extended properties
+7/25/2024 2:54:34 PM	Gathering assemblies
+7/25/2024 2:54:35 PM	Gathering credentials
+7/25/2024 2:54:35 PM	Gathering logins
+7/25/2024 2:54:35 PM	Gathering server audits
+7/25/2024 2:54:37 PM	Scanning project for duplicate elements
+7/25/2024 2:54:37 PM	Finished duplicate element processing
+7/25/2024 2:54:40 PM	Finished importing database.
+7/25/2024 2:54:40 PM	A summary of the import was saved to the following location: C:\Work\hr-dynamics\HR_Dynamics\hr_dynamics_database\Import Schema Logs\hr_dynamics_database_20240725115425.log
+7/25/2024 2:54:40 PM	Click Finish to continue...
