@@ -61,6 +61,7 @@
     <Folder Include="onlineordering\" />
     <Folder Include="onlineordering\Tables\" />
     <Folder Include="Security\" />
+    <Folder Include="PostDeploymentScripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="onlineordering\Tables\__EFMigrationsHistory.sql" />
@@ -75,5 +76,11 @@
     <Build Include="Security\onlineordering_1.sql" />
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="Security\onlineordering_2.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploymentScripts\AddUser.sql" />
   </ItemGroup>
 </Project>

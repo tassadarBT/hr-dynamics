@@ -11,3 +11,5 @@
 /HR_Dynamics/hr_dynamics_services/obj
 /HR_Dynamics/hr_dynamics_database/bin/Debug
 /HR_Dynamics/hr_dynamics_database/obj/Debug
+/HR_Dynamics/hr_dynamics_database/hr_dynamics_database.dbmdl
+/HR_Dynamics/hr_dynamics_database/hr_dynamics_database.jfm
