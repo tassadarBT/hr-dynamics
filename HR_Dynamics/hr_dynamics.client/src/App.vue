@@ -1,5 +1,4 @@
 <script setup>
-    import ToastService from 'primevue/toastservice';
 </script>
 
 <template>
