@@ -1,6 +1,7 @@
 using hr_dynamics_server.Data;
 using hr_dynamics_server.Services.Shared.Implementation;
 using hr_dynamics_server.Services.Shared.Interface;
+using hr_dynamics_server.Services.Survey.Implementation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDbContext<UserSecurityIdentityDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<UserSecurityIdentityDbContext>();
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -32,6 +33,7 @@ builder.Services.AddCors(options => {
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IFrontendSurveyService, FrontendSurveyService>();
 
 var app = builder.Build();
 
@@ -41,10 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 else
-{
-    app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
-}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

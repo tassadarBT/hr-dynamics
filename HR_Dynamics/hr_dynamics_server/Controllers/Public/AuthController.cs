@@ -2,14 +2,16 @@
 using hr_dynamics_server.Services.Shared.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
-namespace hr_dynamics_server.Controllers
+namespace hr_dynamics_server.Controllers.Public
 {
-    public class LoginController : ControllerBase
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILoginService _loginService;
-        public LoginController(UserManager<IdentityUser> userManager, ILoginService loginService)
+        public AuthController(UserManager<IdentityUser> userManager, ILoginService loginService)
         {
             _userManager = userManager;
             _loginService = loginService;
@@ -18,18 +20,19 @@ namespace hr_dynamics_server.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var userDb = await _userManager.FindByNameAsync(model.Username ?? string.Empty);
                 if (userDb != null)
                 {
                     if (await _userManager.CheckPasswordAsync(userDb, model.Password ?? string.Empty))
                     {
-                        var token = _loginService.GenerateAccessToken(model.Username ?? string.Empty);
+                        var tokenObject = _loginService.GenerateAccessToken(model.Username ?? string.Empty);
+                        var tokenStr = new JwtSecurityTokenHandler().WriteToken(tokenObject);
                         return Ok(new
                         {
                             success = true,
-                            token
+                            token = tokenStr
                         });
                     }
                     else

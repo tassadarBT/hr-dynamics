@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{d48a15c7-0d98-4b55-802e-de614b4248ff}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -62,25 +62,32 @@
     <Folder Include="onlineordering\Tables\" />
     <Folder Include="Security\" />
     <Folder Include="PostDeploymentScripts" />
+    <Folder Include="onlineordering\Tables\AspNetSecurity" />
+    <Folder Include="onlineordering\Tables\Survey" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="onlineordering\Tables\__EFMigrationsHistory.sql" />
-    <Build Include="onlineordering\Tables\AspNetRoles.sql" />
-    <Build Include="onlineordering\Tables\AspNetUsers.sql" />
-    <Build Include="onlineordering\Tables\AspNetRoleClaims.sql" />
-    <Build Include="onlineordering\Tables\AspNetUserClaims.sql" />
-    <Build Include="onlineordering\Tables\AspNetUserLogins.sql" />
-    <Build Include="onlineordering\Tables\AspNetUserRoles.sql" />
-    <Build Include="onlineordering\Tables\AspNetUserTokens.sql" />
     <Build Include="Security\onlineordering.sql" />
     <Build Include="Security\onlineordering_1.sql" />
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="Security\onlineordering_2.sql" />
+    <Build Include="onlineordering\Tables\Survey\Campaigns.sql" />
+    <Build Include="onlineordering\Tables\Survey\Surveys.sql" />
+    <Build Include="onlineordering\Tables\Survey\Questions.sql" />
+    <Build Include="onlineordering\Tables\Survey\QuestionOptions.sql" />
+    <Build Include="onlineordering\Tables\Survey\QuestionOptionGroups.sql" />
+    <Build Include="onlineordering\Tables\Survey\Responses.sql" />
+    <Build Include="onlineordering\Tables\Survey\ResponseQuestionAnswers.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploymentScripts\AddUser.sql" />
+    <None Include="PostDeploymentScripts\AddSurveyData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="onlineordering\Tables\AspNetSecurity\AspNetRoles.sql" />
+    <Build Include="onlineordering\Tables\AspNetSecurity\AspNetUserRoles.sql" />
+    <Build Include="onlineordering\Tables\AspNetSecurity\AspNetUsers.sql" />
   </ItemGroup>
 </Project>

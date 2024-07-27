@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Surveys]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Name] NVARCHAR(256) NOT NULL,
+	[Description] NVARCHAR(1024) NULL,
+	[IsAnonymous] BIT NOT NULL,	
+	[Active] BIT NOT NULL,
+)

@@ -1,4 +1,4 @@
-﻿IF NOT EXISTS ( select 1 from aspnetusers where username = 'marian.hluscu@gmail.com')
+﻿IF NOT EXISTS ( select 1 from onlineordering.aspnetusers where username = 'marian.hluscu@gmail.com')
 BEGIn
 	INSERT [onlineordering].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'1b388140-fb97-4d3d-832d-74d650f2e746', N'marian.hluscu@gmail.com', N'MARIAN.HLUSCU@GMAIL.COM', N'marian.hluscu@gmail.com', N'MARIAN.HLUSCU@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEN73oBvX+4zyvspeQCz0JsQCcI4ewHF1X6B2FRaKIeVEucOrLd5bbMxfFKnjzXufUg==', N'AXZSMCHNXMEXCH7UDPBJ2VQMGSNOBNZZ', N'496ac28e-bbc0-403b-b761-f886579c92cb', N'0751042794', 0, 0, NULL, 0, 0)
 END
