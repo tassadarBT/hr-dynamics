@@ -3,7 +3,7 @@
     import { ref, computed } from 'vue';
     import { useToast } from 'primevue/usetoast';
     import AppConfig from '@/layout/AppConfig.vue';
-    import { LoginService } from '@/service/LoginService.js'
+    import { LoginService } from '@/service/LoginService.js';
 
     const toast = useToast();
     const { layoutConfig } = useLayout();
@@ -20,6 +20,7 @@
         if (res.ok) {
             var resJson = await res.json();
             if (resJson.success) {
+                loginService.saveToken(resJson.token);
                 window.location.href = '/';
             } else {
                 toast.add({ severity: 'error', summary: 'Login Failure', detail: resJson.errorMessage, life: 3000 });

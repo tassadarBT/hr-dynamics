@@ -4,7 +4,14 @@ BEGIN
 	insert into dbo.Surveys([Id], [Name], [Description], [IsAnonymous],[Active]) values (1, 'Company Feedback Survey', 'Company Feedback Survey', 1, 1);
 	set identity_insert dbo.Surveys OFF;
 END
-GO
+
+IF NOT EXISTS ( select 1 from Campaigns)
+BEGIN
+	set identity_insert dbo.Campaigns ON;
+	insert into Campaigns(Id, SurveyId, [Name], [Description], [RecipientEmails], [StartTime], [EndTime], Active)	
+	values (1,1,  'Q1 - 2024', 'Company Feedback Survey Q1 - 2024',  NULL,  '2024-06-01', '2024-09-30 23:59',  1);
+	set identity_insert dbo.Campaigns OFF;
+END
 
 IF NOT EXISTS ( select 1 from QuestionOptionGroups)
 BEGIN

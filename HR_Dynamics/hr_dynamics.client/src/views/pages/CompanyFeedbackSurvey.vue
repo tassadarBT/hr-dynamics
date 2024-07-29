@@ -1,7 +1,9 @@
 <script setup>
-    import { ref, computed } from 'vue';
+    import { ref, computed, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
+    import { useToast } from 'primevue/usetoast';
     import { useLayout } from '@/layout/composables/layout';
+    import { CompanyFeedbackSurveyService } from '@/service/CompanyFeedbackSurveyService';
     import QuestionSection from './components/QuestionSection.vue';
     import RadioListSectionQuestion from './components/RadioListSectionQuestion.vue';
 
@@ -15,57 +17,14 @@
     const logoUrl = computed(() => {
         return `/layout/images/${layoutConfig.darkTheme.value ? 'logo-white' : 'logo-dark'}.svg`;
     });
-    
-    const opts = [{ id: 1, description: '1' }, { id: 2, description: '2' }, { id: 3, description: '3' }, { id: -1, description: 'SA' }];
-    const data = ref({
-        submitted : false,
-        notes: null,
-        directAccess: false,
-        indirectAccess: false,
-        department: null,
-        site: null,
-        questions: [
-            {
-                displayOrder: 'A',
-                text: 'Cum evaluati atmosfera la locul de munca:',
-                type: 'section',
-                class: 'fw-bold',
-                questions: [
-                    { 'displayOrder': 'A1', text: '- in companie?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                    { 'displayOrder': 'A2', text: '- in atelierul/departamentul in care lucrati?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                ]
-            },
-            {
-                displayOrder: 'B',
-                text: 'Cum evaluati colaborarea:',
-                type: 'section',
-                questions: [
-                    { 'displayOrder': 'B1', text: '- cu colegii de munca?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                    { 'displayOrder': 'B2', text: ' - cu managerii?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false, dirty: false, valid: false }
-                ]
-            },
-            {
-                displayOrder: 'C',
-                type: 'section',
-                text: 'Cum evaluati locul  dumneavoastra de munca in ceea ce priveste:',
-                questions: [
-                    { 'displayOrder': 'C1', text: '- organizarea si eficacitatea muncii in intreprindere?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                    { 'displayOrder': 'C2', text: '- echipamentele(masinile) si mijloacele logistice(calculatoare, programe informatice, telefon, fax...) puse la dispozitie?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                    { 'displayOrder': 'C3', text: '- comunicarea si transparenta in ceea ce priveste politica intreprinderii, abordarea problemelor, discutarea chestiunilor sociale', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                    { 'displayOrder': 'C4', text: '- mediul social (sala de mese, toalete, sala de sedinte, spatii verzi, etc) ?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                    { 'displayOrder': 'C5', text: '- amenajarea locului dvs.de lucru(amplasare, ergonomie, aerisire, iluminat, caldura/ umiditate, zgomot, vibratii, poluare)?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false },
-                    { 'displayOrder': 'C6', text: '- securitatea si igiena muncii in serviciul dvs. (securitatea masinilor, echipamente de protectie individuale si colective, dispozitii privind securitatea  si curatenia la locul de munca)?', type: 'radio-list', options: opts, required: true, dirty: false, valid: false }
-                ]
-            },
-            { displayOrder: 'D', text: 'Cum evaluati atitudinea sefilor  dumeavoastra ierarhici privind necesitatile dvs., cererile si propunerile (privind productivitatea, calitatea, mediul inconjurator, securitatea, formarile de care aveti nevoie,  diverse nelamuriri?', type: 'section-radio-list', options: opts, required: true, dirty: false, valid: false },
-            { displayOrder: 'E', text: 'Sunteti satisfacut de nivelul de autonomie la locul de munca?', type: 'section-radio-list', options: opts, required: true, dirty: false, valid: false },
-            { displayOrder: 'F', text: 'Fata de as teptarile dvs., considerati  ca ati progresat si acumulat  competente la Leman Industrie?', type: 'section-radio-list', options: opts, required: true, dirty: false, valid: false },
-            { displayOrder: 'G', text: 'Va simtiti motivat sa va indepliniti obiectivele?', type: 'section-radio-list', options: opts, required: true, dirty: false, valid: false },
-            { displayOrder: 'H', text: 'Pe parcursul unei saptamani obisnuite cum percepeti situatiile de stres si presiune ?', type: 'section-radio-list', options: opts, required: true, dirty: false, valid: false },
-            { displayOrder: 'I', text: 'Cum simtiti ca sunteti remunerat pentru munca depusa? Mentionati in campul "Comentarii" tipurile de beneficii salariale pe care vi le doriti.', type: 'section-radio-list', options: opts, required: true, dirty: false, valid: false },
-            { displayOrder: 'J', text: 'Cat de mandru sunteti de imaginea companiei la care lucrati? Mentionati in campul "Comentarii" ce apreciati cel mai mult la angajatorul Leman?', type: 'section-radio-list', options: opts, required: true, dirty: false, valid: false }
-        ]
+    const toast = useToast();
+    const companyFeedbackSurveyService = new CompanyFeedbackSurveyService();
+    const data = ref(null);
+
+    onMounted(async () => {
+        data.value = await (await companyFeedbackSurveyService.getSurveyData()).json();
     });
+
     const setDirtyData = () => {
         for (let q of data.value.questions) {
             q.dirty = true;
@@ -96,14 +55,19 @@
         return null;
     };
 
-    const onSaveClick = () => {
+    const onSaveClick = async () => {
         setDirtyData();
         const firstQuestionUnAnswered = findFirstInvalidQuestion();
         if (firstQuestionUnAnswered) {
             smoothScroll('q' + firstQuestionUnAnswered.displayOrder);
         }
-        else {
-            data.value.submitted = true;
+        else {            
+            const resSave = await (await companyFeedbackSurveyService.saveSurveyData(data.value)).json();
+            if (resSave.success) {
+                data.value.submitted = true;
+            } else {
+                toast.add({ severity: 'error', summary: 'Save Failure', detail: resSave.errorMessage, life: 3000 });
+            }
         }
     };
 </script>
@@ -117,7 +81,7 @@
             <Button icon="pi pi-check" severity="success" label="Save" @click="onSaveClick()" />
         </div>
     </div>
-    <form style="padding-top: 75px;" v-if="!data.submitted">
+    <form style="padding-top: 75px;" v-if="data && !data.submitted">
         <div className="card" style="user-select: none; padding: 10px;" >
             <table>
                 <tbody>
@@ -145,9 +109,9 @@
                 </tbody>
             </table>
         </div>
-        <div v-for="question of data.questions">
-            <question-section v-if="question.type == 'section'" :question="question"></question-section>
-            <radio-list-section-question v-if="question.type == 'section-radio-list'" :question="question"></radio-list-section-question>
+        <div v-for="section of data.sections">
+            <question-section v-if="section.type == 'section'" :question="section"></question-section>
+            <radio-list-section-question v-if="section.type == 'section-radio-list'" :question="section"></radio-list-section-question>
         </div>   
         <div class="grid">
             <div class="col-12">
@@ -189,7 +153,7 @@
             </div>
         </div>        
     </form>
-    <div style="padding-top: 75px;" v-if="data.submitted">
+    <div style="padding-top: 75px;" v-if="data && data.submitted">
         <div className="card" style="user-select: none; padding: 10px;">
             <p>Va multumim pt timpul acordat! Formularul a fost trimis cu success!</p>
         </div> 

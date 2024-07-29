@@ -1,12 +1,12 @@
-﻿using hr_dynamics_server.Models;
-using hr_dynamics_server.Services.Shared.Interface;
+﻿using hr_dynamics_server.Services.Shared.Interface;
+using hr_dynamics_server.ViewModels.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace hr_dynamics_server.Controllers.Public
 {
-    [Route("api/[controller]")]
+    [ApiController, Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -17,7 +17,7 @@ namespace hr_dynamics_server.Controllers.Public
             _loginService = loginService;
         }
 
-        [HttpPost]
+        [HttpPost, Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             if (ModelState.IsValid)
