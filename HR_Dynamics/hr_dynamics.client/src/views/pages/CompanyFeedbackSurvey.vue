@@ -38,7 +38,7 @@
 
     const findFirstInvalidQuestion = () => {
         for (let q of data.value.sections) {
-            if (!q.questions) {
+            if (!q.questions || q.questions.length == 0) {
                 if (!q.valid) {
                     return q;
                 }
@@ -59,7 +59,7 @@
         setDirtyData();
         const firstQuestionUnAnswered = findFirstInvalidQuestion();
         if (firstQuestionUnAnswered) {
-            smoothScroll('q' + firstQuestionUnAnswered.displayOrder);
+            smoothScroll('q' + firstQuestionUnAnswered.id);
         }
         else {            
             const resSave = await (await companyFeedbackSurveyService.saveSurveyData(data.value)).json();

@@ -39,16 +39,16 @@ namespace hr_dynamics_server.Services.Survey.Implementation
             var res = new SaveResultViewModel<int> { Success = true };
             try
             {
-                var response = new ResponseDataModel { SurveyId = 1, CampaignId = await GetLastEligibleCampaignIdByStartTime(vm.StartTime.Value, cancellationToken), StartTime = vm.StartTime.Value, EndTime = DateTime.UtcNow };
+                var responseDb = new ResponseDataModel { SurveyId = 1, CampaignId = await GetLastEligibleCampaignIdByStartTime(vm.StartTime.Value, cancellationToken), StartTime = vm.StartTime.Value, EndTime = DateTime.UtcNow };
                 if (vm.Sections != null)
                 {
-                    var sectionAnswerDbs = vm.Sections.Where(t => t.Questions == null || !t.Questions.Any()).Select(t => new ResponseQuestionAnswerDataModel { QuestionId = t.Id, SurveyId = 1, Value = t.AnswerValue }).ToList();
-                    var questionAnswerDbs = vm.Sections.Where(t => t.Questions != null && t.Questions.Any()).SelectMany(t => t.Questions ?? new List<FrontendQuestionViewModel>()).Select(t => new ResponseQuestionAnswerDataModel { QuestionId = t.Id, SurveyId = 1, Value = t.AnswerValue }).ToList();
+                    var sectionAnswerDbs = vm.Sections.Where(t => t.Questions == null || !t.Questions.Any()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue, Text = t.AnswerValue }).ToList();
+                    var questionAnswerDbs = vm.Sections.Where(t => t.Questions != null && t.Questions.Any()).SelectMany(t => t.Questions ?? new List<FrontendQuestionViewModel>()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue, Text = t.AnswerValue }).ToList();
                     _hrDynamicsDbContext.ResponseQuestionAnswers.AddRange(sectionAnswerDbs);
                     _hrDynamicsDbContext.ResponseQuestionAnswers.AddRange(questionAnswerDbs);
                 }
                 await _hrDynamicsDbContext.SaveChangesAsync(cancellationToken);
-                res.Result = response.Id;
+                res.Result = responseDb.Id;
             }
             catch
             {
