@@ -26,7 +26,7 @@
     });
 
     const setDirtyData = () => {
-        for (let q of data.value.questions) {
+        for (let q of data.value.sections) {
             q.dirty = true;
             if (q.questions) {
                 for (let sq of q.questions) {
@@ -37,7 +37,7 @@
     };
 
     const findFirstInvalidQuestion = () => {
-        for (let q of data.value.questions) {
+        for (let q of data.value.sections) {
             if (!q.questions) {
                 if (!q.valid) {
                     return q;

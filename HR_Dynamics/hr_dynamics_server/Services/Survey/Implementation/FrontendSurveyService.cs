@@ -20,10 +20,17 @@ namespace hr_dynamics_server.Services.Survey.Implementation
 
         public async Task<CompanyFeedbackSurveySaveViewModel> GetCompanyFeedbackSurveyData(CancellationToken cancellationToken)
         {
-            var questionDbs = await _hrDynamicsDbContext.Questions.Include(t => t.Parent).Where(t => t.SurveyId == 1 && t.Active).ToListAsync(cancellationToken);
-            var sectionVms = _mapper.Map<List<FrontendQuestionViewModel>>(questionDbs.Where(t => t.ParentId == null).OrderBy(t => t.DisplayOrder)); 
-            foreach(var sectionVm in sectionVms)
+            var optionDbs = await _hrDynamicsDbContext.QuestionOptions.AsNoTracking().ToListAsync(cancellationToken);
+            var questionDbs = await _hrDynamicsDbContext.Questions.AsNoTracking().Include(t => t.Parent).Where(t => t.SurveyId == 1 && t.Active).ToListAsync(cancellationToken);
+            var sectionVms = _mapper.Map<List<FrontendQuestionViewModel>>(questionDbs.Where(t => t.ParentId == null).OrderBy(t => t.DisplayOrder));
+
+            foreach (var sectionVm in sectionVms)
+            {
                 sectionVm.Questions = _mapper.Map<List<FrontendQuestionViewModel>>(questionDbs.Where(t => t.ParentId == sectionVm.Id).OrderBy(t => t.DisplayOrder));
+                sectionVm.Options = optionDbs.Where(t => t.Active && t.OptionGroupId == 1).OrderBy(t => t.DisplayOrder).Select(t => new FrontendQuestionOptionViewModel { Id = t.Value, Description = t.Text }).ToList();
+                foreach(var question in sectionVm.Questions ?? new List<FrontendQuestionViewModel>())                
+                    question.Options = optionDbs.Where(t => t.Active && t.OptionGroupId == 1).OrderBy(t => t.DisplayOrder).Select(t => new FrontendQuestionOptionViewModel { Id = t.Value, Description = t.Text }).ToList();                
+            }
             return new CompanyFeedbackSurveySaveViewModel { StartTime = DateTime.UtcNow, Sections = sectionVms };
         }
 
