@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace hr_dynamics_server.Services.Survey.Implementation
 {
-    public class FrontendSurveyService : IFrontendSurveyService
+    public class CompanyFeedbackSurveyFrontendService : ICompanyFeedbackSurveyFrontendService
     {
         private readonly HrDynamicsDbContext _hrDynamicsDbContext;
         private readonly IMapper _mapper;
-        public FrontendSurveyService(HrDynamicsDbContext hrDynamicsDbContext, IMapper mapper)
+        public CompanyFeedbackSurveyFrontendService(HrDynamicsDbContext hrDynamicsDbContext, IMapper mapper)
         {
             _hrDynamicsDbContext = hrDynamicsDbContext;
             _mapper = mapper;

@@ -2,6 +2,7 @@ using hr_dynamics_server.Data;
 using hr_dynamics_server.Services.Shared.Implementation;
 using hr_dynamics_server.Services.Shared.Interface;
 using hr_dynamics_server.Services.Survey.Implementation;
+using hr_dynamics_server.Services.Survey.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +36,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddScoped<IFrontendSurveyService, FrontendSurveyService>();
+builder.Services.AddScoped<ICompanyFeedbackSurveyFrontendService, CompanyFeedbackSurveyFrontendService>();
+builder.Services.AddScoped<ICompanyFeedbackSurveyReportBackendService, CompanyFeedbackSurveyReportBackendService>();
 
 var app = builder.Build();
 

@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace hr_dynamics_server.Controllers.Public
 {
     [ApiController, Route("api/[controller]")]
-    public class CompanyFeedbackSurveyController : ControllerBase
+    public class CompanyFeedbackSurveyFrontendController : ControllerBase
     {
-        private readonly IFrontendSurveyService _frontendSurveyService;
-        public CompanyFeedbackSurveyController(IFrontendSurveyService frontendSurveyService)
+        private readonly ICompanyFeedbackSurveyFrontendService _frontendSurveyService;
+        public CompanyFeedbackSurveyFrontendController(ICompanyFeedbackSurveyFrontendService frontendSurveyService)
         {
             _frontendSurveyService = frontendSurveyService;
         }

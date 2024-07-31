@@ -13,7 +13,7 @@
             <Panel>
                 <div class="grid">
                     <div class="col-7">
-                        <p class="font-bold" :invalid="!question.valid && question.dirty">{{question.displayOrderText}}</p>
+                        <p class="font-bold" :invalid="question.invalid && question.dirty">{{question.displayOrderText}}. {{question.text}}</p>
                     </div>
                     <div class="col-5">
                         <div class="flex flex-wrap gap-4" :invalid="!question.valid && question.dirty">

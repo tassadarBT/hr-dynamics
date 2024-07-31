@@ -25,10 +25,10 @@ GO
 IF NOT EXISTS ( select 1 from QuestionOptions)
 BEGIN
 	set identity_insert dbo.QuestionOptions ON;
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Value], [Text], [Active]) values (1, 1, 1, '1',  '1', 1);
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Value], [Text], [Active]) values (2, 1, 2, '2',  '2', 1);
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Value], [Text], [Active]) values (3, 1, 3, '3',  '3', 1);
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Value], [Text], [Active]) values (4, 1, 4, '-1','SA', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (1, 1, 1, 'red',  '1',  '1', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (2, 1, 2, 'orange', '2',  '2', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (3, 1, 3, 'green', '3',  '3', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (4, 1, 4, 'grey', '-1','SA', 1);
 	set identity_insert dbo.QuestionOptions OFF;
 END
 GO
@@ -39,21 +39,21 @@ BEGIN
 	set identity_insert dbo.Questions ON;
 	-- A
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
-	values (1, 1, NULL, NULL, 1, 'A', 'section', 'Cum evaluati atmosfera la locul de munca:', 1, 0, 1);
+	values (1, 1, NULL, NULL, 1, 'A', 'section', 'Cum evaluati atmosfera la locul de munca', 1, 0, 1);
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
 	values (2, 1, 1, 1, 2, 'A1', 'radio-list', '- in companie?', 0, 1, 1);
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
 	values (3, 1, 1, 1, 3, 'A2', 'radio-list', '- in atelierul/departamentul in care lucrati?', 0, 1, 1);
 	-- B 
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
-	values (4, 1, NULL, NULL, 4, 'B', 'section', 'Cum evaluati colaborarea:', 1, 0, 1);
+	values (4, 1, NULL, NULL, 4, 'B', 'section', 'Cum evaluati colaborarea', 1, 0, 1);
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
 	values (5, 1, 4, 1, 5, 'B1', 'radio-list', '- cu colegii de munca?', 0, 1, 1);
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
 	values (6, 1, 4, 1, 6, 'B2', 'radio-list', '- cu managerii?', 0, 1, 1);
 	-- C 
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
-	values (7, 1, NULL, NULL, 7, 'C', 'section', 'Cum evaluati locul  dumneavoastra de munca in ceea ce priveste:', 1, 0, 1);
+	values (7, 1, NULL, NULL, 7, 'C', 'section', 'Cum evaluati locul  dumneavoastra de munca in ceea ce priveste', 1, 0, 1);
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
 	values (8, 1, 7, 1, 8, 'C1', 'radio-list', '- organizarea si eficacitatea muncii in intreprindere?', 0, 1, 1);
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 

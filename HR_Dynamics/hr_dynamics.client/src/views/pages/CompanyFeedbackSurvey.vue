@@ -3,7 +3,7 @@
     import { useRouter } from 'vue-router';
     import { useToast } from 'primevue/usetoast';
     import { useLayout } from '@/layout/composables/layout';
-    import { CompanyFeedbackSurveyService } from '@/service/CompanyFeedbackSurveyService';
+    import { CompanyFeedbackSurveyFrontendService } from '@/service/CompanyFeedbackSurveyFrontendService';
     import QuestionSection from './components/QuestionSection.vue';
     import RadioListSectionQuestion from './components/RadioListSectionQuestion.vue';
 
@@ -18,7 +18,7 @@
         return `/layout/images/${layoutConfig.darkTheme.value ? 'logo-white' : 'logo-dark'}.svg`;
     });
     const toast = useToast();
-    const companyFeedbackSurveyService = new CompanyFeedbackSurveyService();
+    const companyFeedbackSurveyService = new CompanyFeedbackSurveyFrontendService();
     const data = ref(null);
 
     onMounted(async () => {
