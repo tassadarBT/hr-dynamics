@@ -29,7 +29,7 @@ namespace hr_dynamics_server.Services.Survey.Implementation
         {
             var res = new CompanyFeedbackSurveyBackendReportViewModel {
                 Questions = await _hrDynamicsDbContext.Questions.Include(t => t.Parent).AsNoTracking().Where(t => t.SurveyId == 1 && t.IsSection == false).OrderBy(t => t.DisplayOrder)
-                .Select(t => new CompanyFeedbackSurveyBackendQuestionViewModel { Id = t.Id, DisplayOrderText = t.DisplayOrderText, Text = t.Parent != null ? $"{t.Parent.Text} {t.Text}" : t.Text).ToListAsync(cancellationToken)
+                .Select(t => new CompanyFeedbackSurveyBackendQuestionViewModel { Id = t.Id, DisplayOrderText = t.DisplayOrderText, Text = t.Parent != null ? $"{t.Parent.Text} {t.Text}" : t.Text }).ToListAsync(cancellationToken)
             };                        
             var answerDbs = await _hrDynamicsDbContext.ResponseQuestionAnswers.Include(t => t.Response).AsNoTracking()
                 .Where(t => t.Response != null && (filter.CampaignId < 0 ||  t.Response.CampaignId == filter.CampaignId) 
