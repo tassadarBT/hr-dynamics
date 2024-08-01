@@ -13,3 +13,6 @@
 /HR_Dynamics/hr_dynamics_database/obj/Debug
 /HR_Dynamics/hr_dynamics_database/hr_dynamics_database.dbmdl
 /HR_Dynamics/hr_dynamics_database/hr_dynamics_database.jfm
+/HR_Dynamics/hr_dynamics_server/bin/Release/net8.0
+/HR_Dynamics/hr_dynamics_server/Properties/PublishProfiles
+/HR_Dynamics/hr_dynamics_server/hr_dynamics_server.csproj.user
