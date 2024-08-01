@@ -43,7 +43,7 @@ namespace hr_dynamics_server.Services.Survey.Implementation
                 var responseDb = new ResponseDataModel { SurveyId = 1, CampaignId = await GetLastEligibleCampaignIdByStartTime(vm.StartTime.GetValueOrDefault(), cancellationToken), StartTime = vm.StartTime.Value, EndTime = DateTime.UtcNow };
                 if (vm.Sections != null)
                 {
-                    var sectionAnswerDbs = vm.Sections.Where(t => t.Questions == null || !t.Questions.Any()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue, , Text = questionOptionDbs.FirstOrDefault(opt => opt.Value == t.AnswerValue)?.Text }).ToList();
+                    var sectionAnswerDbs = vm.Sections.Where(t => t.Questions == null || !t.Questions.Any()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue,  Text = questionOptionDbs.FirstOrDefault(opt => opt.Value == t.AnswerValue)?.Text }).ToList();
                     var questionAnswerDbs = vm.Sections.Where(t => t.Questions != null && t.Questions.Any()).SelectMany(t => t.Questions ?? new List<FrontendQuestionViewModel>()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue, Text = questionOptionDbs.FirstOrDefault(opt => opt.Value ==  t.AnswerValue)?.Text }).ToList();
                     _hrDynamicsDbContext.ResponseQuestionAnswers.AddRange(sectionAnswerDbs);
                     _hrDynamicsDbContext.ResponseQuestionAnswers.AddRange(questionAnswerDbs);
