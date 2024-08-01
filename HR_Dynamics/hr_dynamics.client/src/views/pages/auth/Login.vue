@@ -1,10 +1,12 @@
 <script setup>
     import { useLayout } from '@/layout/composables/layout';
     import { ref, computed } from 'vue';
+    import { useRouter } from 'vue-router';
     import { useToast } from 'primevue/usetoast';
     import AppConfig from '@/layout/AppConfig.vue';
     import { LoginService } from '@/service/LoginService.js';
 
+    const router = useRouter();
     const toast = useToast();
     const { layoutConfig } = useLayout();
     const loginService = new LoginService();
@@ -21,7 +23,7 @@
             var resJson = await res.json();
             if (resJson.success) {
                 loginService.saveToken(resJson.token);
-                window.location.href = '/';
+                router.push({ path: '/' });
             } else {
                 toast.add({ severity: 'error', summary: 'Login Failure', detail: resJson.errorMessage, life: 3000 });
             }

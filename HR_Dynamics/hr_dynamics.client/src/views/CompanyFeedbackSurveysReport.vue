@@ -3,7 +3,9 @@
     import { useLayout } from '@/layout/composables/layout';
     import { CompanyFeedbackSurveyBackendReportService } from '@/service/CompanyFeedbackSurveyBackendReportService';
     import { LoginService } from '@/service/LoginService.js';
+    import { useRouter } from 'vue-router';
 
+    const router = useRouter();
     const loginService = new LoginService();
     const companyFeedbackSurveyBackendReportService = new CompanyFeedbackSurveyBackendReportService();
     const { layoutConfig } = useLayout();
@@ -71,7 +73,7 @@
 
     onMounted(async () => {
         if (!await loginService.isLoggedIn()) {
-            window.location.href = '/auth/login';
+            router.push({ path: '/auth/login' });
         }
         await getFilter();
         await searchData();
