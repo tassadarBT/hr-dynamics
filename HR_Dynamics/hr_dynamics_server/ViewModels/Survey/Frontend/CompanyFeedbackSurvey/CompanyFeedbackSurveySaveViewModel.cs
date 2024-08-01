@@ -8,5 +8,7 @@ namespace hr_dynamics_server.ViewModels.Survey.Frontend.CompanyFeedbackSurvey
         [Required]
         public DateTime? StartTime { get; set; }
         public List<FrontendQuestionViewModel>? Sections { get; set; }
+        [MaxLength(1024)]
+        public string? Notes { get; set; }
     }
 }

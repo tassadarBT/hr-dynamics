@@ -16,6 +16,8 @@ namespace hr_dynamics_server.Data.DataModels
         public string? UserId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        [MaxLength(1024)]
+        public string? Notes { get; set; }
         [ForeignKey("SurveyId")]
         public SurveyDataModel? Survey { get; set; }
         [ForeignKey("CampaignId")]

@@ -40,7 +40,7 @@ namespace hr_dynamics_server.Services.Survey.Implementation
             try
             {
                 var questionOptionDbs = await _hrDynamicsDbContext.QuestionOptions.Where(t => t.OptionGroupId == 1).ToListAsync(cancellationToken);
-                var responseDb = new ResponseDataModel { SurveyId = 1, CampaignId = await GetLastEligibleCampaignIdByStartTime(vm.StartTime.GetValueOrDefault(), cancellationToken), StartTime = vm.StartTime.Value, EndTime = DateTime.UtcNow };
+                var responseDb = new ResponseDataModel { SurveyId = 1, CampaignId = await GetLastEligibleCampaignIdByStartTime(vm.StartTime.GetValueOrDefault(), cancellationToken), StartTime = vm.StartTime.Value, EndTime = DateTime.UtcNow, Notes = vm.Notes };
                 if (vm.Sections != null)
                 {
                     var sectionAnswerDbs = vm.Sections.Where(t => t.Questions == null || !t.Questions.Any()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue,  Text = questionOptionDbs.FirstOrDefault(opt => opt.Value == t.AnswerValue)?.Text }).ToList();
