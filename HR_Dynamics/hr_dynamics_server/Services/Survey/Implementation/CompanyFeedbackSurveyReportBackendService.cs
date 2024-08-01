@@ -90,6 +90,7 @@ namespace hr_dynamics_server.Services.Survey.Implementation
                         workSheet.Cell(rowIndex, 3).SetValue(optionDbs.FirstOrDefault(t => t.Value == answerDb?.Value)?.Description);
                         rowIndex++;
                     }
+                    workSheet.Columns().AdjustToContents(0, (double)100);
                     sheetIndex++;
                 }     
                 using (var mms = new MemoryStream())
