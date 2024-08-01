@@ -6,6 +6,7 @@
 	[Color] NVARCHAR(128) NULL,
 	[Value] NVARCHAR(128) NOT NULL,
 	[Text] NVARCHAR(256) NOT NULL,
+	[Description] NVARCHAR(256) NOT NULL,
 	[Active] BIT NOT NULL,
 	CONSTRAINT FK_Option_OptionGroup FOREIGN KEY(OptionGroupId) REFERENCES QuestionOptionGroups(Id)
 )

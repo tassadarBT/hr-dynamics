@@ -4,7 +4,8 @@ namespace hr_dynamics_server.Services.Survey.Interface
 {
     public interface ICompanyFeedbackSurveyReportBackendService
     {
-        Task<CompanyFeedbackSurveyBackendReportFilterViewModel> GetFilter(CancellationToken cancellationToken);
-        Task<CompanyFeedbackSurveyBackendReportViewModel> GetReport(CompanyFeedbackSurveyBackendReportFilterViewModel filterVm, CancellationToken cancellationToken);
+        Task<CompanyFeedbackSurveyBackendReportFilterViewModel> GetFilterData(CancellationToken cancellationToken);
+        Task<CompanyFeedbackSurveyBackendReportViewModel> GetReportData(CompanyFeedbackSurveyBackendReportFilterViewModel filterVm, CancellationToken cancellationToken);
+        Task<byte[]> ExportReportData(CompanyFeedbackSurveyBackendReportFilterViewModel filter, CancellationToken cancellationToken);
     }
 }

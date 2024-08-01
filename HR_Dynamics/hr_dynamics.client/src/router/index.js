@@ -10,13 +10,13 @@ const router = createRouter({
             children: [
                 {
                     path: '/',
-                    name: 'dashboard',
-                    component: () => import('@/views/Dashboard.vue')
+                    name: 'Company Feedback Report',
+                    component: () => import('@/views/CompanyFeedbackSurveysReport.vue')
                 },
                 {
                     path: '/feedback-surveys-report',
                     name: 'feedback-surveys-report',
-                    component: () => import('@/views/FeedbackSurveysReport.vue')
+                    component: () => import('@/views/CompanyFeedbackSurveysReport.vue')
                 },
                 {
                     path: '/uikit/formlayout',

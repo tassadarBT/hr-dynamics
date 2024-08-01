@@ -15,6 +15,8 @@ namespace hr_dynamics_server.Data.DataModels
         public string? Value { get; set; }
         [Required, MaxLength(256)]
         public string? Text { get; set; }
+        public string? Description { get; set; }
+        public string? Color { get; set; }
         public bool Active { get; set; }
         [ForeignKey("OptionGroupId")]
         public QuestionOptionGroupDataModel? OptionGroup { get; set; }

@@ -63,20 +63,22 @@
     <Folder Include="Security\" />
     <Folder Include="PostDeploymentScripts" />
     <Folder Include="onlineordering\Tables\AspNetSecurity" />
-    <Folder Include="onlineordering\Tables\Survey" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Tables\Survey" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\onlineordering.sql" />
     <Build Include="Security\onlineordering_1.sql" />
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="Security\onlineordering_2.sql" />
-    <Build Include="onlineordering\Tables\Survey\Campaigns.sql" />
-    <Build Include="onlineordering\Tables\Survey\Surveys.sql" />
-    <Build Include="onlineordering\Tables\Survey\Questions.sql" />
-    <Build Include="onlineordering\Tables\Survey\QuestionOptions.sql" />
-    <Build Include="onlineordering\Tables\Survey\QuestionOptionGroups.sql" />
-    <Build Include="onlineordering\Tables\Survey\Responses.sql" />
-    <Build Include="onlineordering\Tables\Survey\ResponseQuestionAnswers.sql" />
+    <Build Include="dbo\Tables\Survey\Campaigns.sql" />
+    <Build Include="dbo\Tables\Survey\QuestionOptionGroups.sql" />
+    <Build Include="dbo\Tables\Survey\QuestionOptions.sql" />
+    <Build Include="dbo\Tables\Survey\Questions.sql" />
+    <Build Include="dbo\Tables\Survey\ResponseQuestionAnswers.sql" />
+    <Build Include="dbo\Tables\Survey\Responses.sql" />
+    <Build Include="dbo\Tables\Survey\Surveys.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />

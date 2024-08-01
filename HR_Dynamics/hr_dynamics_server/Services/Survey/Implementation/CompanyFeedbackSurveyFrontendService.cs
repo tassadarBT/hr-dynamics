@@ -39,11 +39,12 @@ namespace hr_dynamics_server.Services.Survey.Implementation
             var res = new SaveResultViewModel<int> { Success = true };
             try
             {
-                var responseDb = new ResponseDataModel { SurveyId = 1, CampaignId = await GetLastEligibleCampaignIdByStartTime(vm.StartTime.Value, cancellationToken), StartTime = vm.StartTime.Value, EndTime = DateTime.UtcNow };
+                var questionOptionDbs = await _hrDynamicsDbContext.QuestionOptions.Where(t => t.OptionGroupId == 1).ToListAsync(cancellationToken);
+                var responseDb = new ResponseDataModel { SurveyId = 1, CampaignId = await GetLastEligibleCampaignIdByStartTime(vm.StartTime.GetValueOrDefault(), cancellationToken), StartTime = vm.StartTime.Value, EndTime = DateTime.UtcNow };
                 if (vm.Sections != null)
                 {
                     var sectionAnswerDbs = vm.Sections.Where(t => t.Questions == null || !t.Questions.Any()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue, Text = t.AnswerValue }).ToList();
-                    var questionAnswerDbs = vm.Sections.Where(t => t.Questions != null && t.Questions.Any()).SelectMany(t => t.Questions ?? new List<FrontendQuestionViewModel>()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue, Text = t.AnswerValue }).ToList();
+                    var questionAnswerDbs = vm.Sections.Where(t => t.Questions != null && t.Questions.Any()).SelectMany(t => t.Questions ?? new List<FrontendQuestionViewModel>()).Select(t => new ResponseQuestionAnswerDataModel { Response = responseDb, QuestionId = t.Id, Value = t.AnswerValue, Text = questionOptionDbs.FirstOrDefault(opt => opt.Value ==  t.AnswerValue)?.Text }).ToList();
                     _hrDynamicsDbContext.ResponseQuestionAnswers.AddRange(sectionAnswerDbs);
                     _hrDynamicsDbContext.ResponseQuestionAnswers.AddRange(questionAnswerDbs);
                 }

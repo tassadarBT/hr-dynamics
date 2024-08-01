@@ -25,10 +25,10 @@ GO
 IF NOT EXISTS ( select 1 from QuestionOptions)
 BEGIN
 	set identity_insert dbo.QuestionOptions ON;
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (1, 1, 1, 'red',  '1',  '1', 1);
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (2, 1, 2, 'orange', '2',  '2', 1);
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (3, 1, 3, 'green', '3',  '3', 1);
-	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Active]) values (4, 1, 4, 'grey', '-1','SA', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Description], [Active]) values (1, 1, 1, 'red',  '1',  '1', 'nemultumit', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Description], [Active]) values (2, 1, 2, 'orange', '2',  '2', 'nici satisfacut/nici nemultumit', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Description], [Active]) values (3, 1, 3, 'green', '3',  '3', 'satisfacut', 1);
+	insert into dbo.QuestionOptions([Id], [OptionGroupId], [DisplayOrder], [Color], [Value], [Text], [Description], [Active]) values (4, 1, 4, 'grey', '-1','SA', 'fara nici o parere', 1);
 	set identity_insert dbo.QuestionOptions OFF;
 END
 GO
