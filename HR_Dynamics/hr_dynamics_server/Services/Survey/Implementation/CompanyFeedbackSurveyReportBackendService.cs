@@ -69,7 +69,7 @@ namespace hr_dynamics_server.Services.Survey.Implementation
                 .Where(t => t.Response != null && (filter.CampaignId < 0 || t.Response.CampaignId == filter.CampaignId)
                                                && (filter.StartTime == null || t.Response.StartTime >= filter.StartTime)
                                                && (filter.EndTime == null || t.Response.EndTime <= filter.StartTime)).ToListAsync(cancellationToken);
-            var responseDbs = answerDbs.Select(t => t.Response).Distinct().OrderBy(t => t.StartTime).ToList();
+            var responseDbs = answerDbs.Select(t => t.Response).GroupBy(t => t.Id).Select(t => t.First()).OrderBy(t => t.StartTime).ToList();
             var sheetIndex = 0;
 
             using (var workbook = new XLWorkbook())
@@ -81,13 +81,14 @@ namespace hr_dynamics_server.Services.Survey.Implementation
                     workSheet.Cell(1, 1).SetValue("Idx");
                     workSheet.Cell(1, 2).SetValue("Text");
                     workSheet.Cell(1, 3).SetValue("Answer");
-                    var rowIndex = 1;
+                    var rowIndex = 2;
                     foreach (var questionDb in questionDbs)
                     {
                         var answerDb = answerDbs.FirstOrDefault(t => t.QuestionId == questionDb.Id && t.ResponseId == responseDb?.Id);
                         workSheet.Cell(rowIndex, 1).SetValue(questionDb.DisplayOrderText);
                         workSheet.Cell(rowIndex, 2).SetValue(questionDb.Text);
                         workSheet.Cell(rowIndex, 3).SetValue(optionDbs.FirstOrDefault(t => t.Value == answerDb?.Value)?.Description);
+                        rowIndex++;
                     }
                     sheetIndex++;
                 }     
