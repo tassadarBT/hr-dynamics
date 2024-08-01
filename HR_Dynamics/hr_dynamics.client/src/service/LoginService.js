@@ -11,13 +11,22 @@ export class LoginService {
     }
 
     async isLoggedIn() {
+        const token = this.getToken();
+        if (!token) {
+            return false;
+        }
         const res = await (await fetch(`${apiUrl}/api/Auth/IsLoggedIn`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.getToken()}`
+                'Authorization': `Bearer ${token}`
             }
         })).json();
         return res;
+    }
+
+    logout() {
+        localStorage.removeItem('auth_token');
+        window.location.href = '/auth/login';
     }
 }
