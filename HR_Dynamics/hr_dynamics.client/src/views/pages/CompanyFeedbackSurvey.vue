@@ -71,43 +71,42 @@
         }
     };
 </script>
+<style scoped>    
+    @media (max-width: 991px) {
+        .layout-topbar-logo{
+            display: none !important;
+        }
+    }
+</style>
 <template>
     <div class="layout-topbar">
         <router-link to="/landing" class="layout-topbar-logo" style="width: auto;">
             <img :src="logoUrl" alt="logo" style="height: 75px;" />
         </router-link>
         <h4>Chestionar de satisfactie a personalului</h4>
-        <div class="layout-topbar-menu">
+        <div class="layout-topbar-menu" style="display: inline-flex !important;">
             <Button icon="pi pi-check" severity="success" label="Save" @click="onSaveClick()" />
         </div>
     </div>
-    <form style="padding-top: 75px;" v-if="data && !data.submitted">
-        <div className="card" style="user-select: none; padding: 10px;" >
-            <table>
-                <tbody>
-                    <tr>
-                        <td style="vertical-align: top; width:440px;">
-                            <i class="pi pi-fw pi-question-circle" style="font-size: 20px;"></i> Acest chestionar este facultativ si anonim. El are ca obiectiv:
-                        </td>
-                        <td style="vertical-align: top;">
-                            <ul style="margin-top: 0; margin-left: 0; padding-left: 20px; margin-bottom: 0;">
-                                <li>sa masoare nivelul de satisfactie a intregului personal al intreprinderii.</li>
-                                <li>sa identifice masurile de intreprins pentru a ameliora nivelul de satisfactie a personalului.</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            Chestionarul cuprinde 18 intrebari  la care trebuie sa raspundeti  in mod obiectiv bifand una din evaluarile de mai jos.Va rugam sa predati chestionarul sefului ierarhic inainte de ______________
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            Evaluare:   <b>1</b> =  nemultumit,	<b>2</b> = nici satisfacut / nici nemultumit, <b>3</b> = satisfacut,	<b>SA</b> = fara nici o parere
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <form class="pt-4"  style="margin-top: 50px;" v-if="data && !data.submitted">
+        <div class="card p-2 mt-4">
+            <div class="grid p-fluid">
+                <div class="col-12">
+                    <p>
+                        <i class="pi pi-fw pi-question-circle" style="font-size: 20px;"></i> Acest chestionar este facultativ si anonim. El are ca obiectiv:
+                        <ul class="mt-0 ml-4 pl-2 mb-0">
+                            <li>sa masoare nivelul de satisfactie a intregului personal al intreprinderii.</li>
+                            <li>sa identifice masurile de intreprins pentru a ameliora nivelul de satisfactie a personalului.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        Chestionarul cuprinde 18 intrebari  la care trebuie sa raspundeti  in mod obiectiv bifand una din evaluarile de mai jos.Va rugam sa predati chestionarul sefului ierarhic inainte de ______________
+                    </p>
+                    <p>
+                        Evaluare:   <b>1</b> =  nemultumit,	<b>2</b> = nici satisfacut / nici nemultumit, <b>3</b> = satisfacut,	<b>SA</b> = fara nici o parere
+                    </p>
+                </div>
+            </div>           
         </div>
         <div v-for="section of data.sections">
             <question-section v-if="section.type == 'section'" :question="section"></question-section>
@@ -130,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2">
+            <div class="xl:col-2 col-12">
                 <div class="field">
                     <label for="department">Departament</label>
                     <div>
@@ -138,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="xl:col-8 col-12">
                 <div class="field">
                     <label>Access</label>
                     <div class="flex items-center">

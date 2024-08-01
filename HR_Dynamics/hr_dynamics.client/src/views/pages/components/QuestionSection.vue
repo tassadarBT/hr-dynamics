@@ -10,7 +10,7 @@ const section = ref(props.question);
         <div class="col-12">
             <Panel toggleable>
                 <template #header>
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2 p-1">
                         <span class="font-bold">{{section.displayOrderText}}. {{section.text}}:</span>
                     </div>
                 </template>
