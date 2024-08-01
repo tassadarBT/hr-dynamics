@@ -9,4 +9,15 @@ export class LoginService {
     getToken() {
         return localStorage.getItem('auth_token');
     }
+
+    async isLoggedIn() {
+        const res = await (await fetch(`${apiUrl}/api/Auth/IsLoggedIn`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.getToken()}`
+            }
+        })).json();
+        return res;
+    }
 }

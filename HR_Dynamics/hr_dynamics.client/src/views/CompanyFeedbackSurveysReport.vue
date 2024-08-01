@@ -2,10 +2,11 @@
     import { ref, watch, onMounted } from 'vue';
     import { useLayout } from '@/layout/composables/layout';
     import { CompanyFeedbackSurveyBackendReportService } from '@/service/CompanyFeedbackSurveyBackendReportService';
+    import { LoginService } from '@/service/LoginService.js';
 
+    const loginService = new LoginService();
     const companyFeedbackSurveyBackendReportService = new CompanyFeedbackSurveyBackendReportService();
     const { layoutConfig } = useLayout();
-
     let documentStyle = getComputedStyle(document.documentElement);
     let textColor = documentStyle.getPropertyValue('--text-color');
 
@@ -69,6 +70,9 @@
     };
 
     onMounted(async () => {
+        if (!await loginService.isLoggedIn()) {
+            window.location.href = '/auth/login';
+        }
         await getFilter();
         await searchData();
     });

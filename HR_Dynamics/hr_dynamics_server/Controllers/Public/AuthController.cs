@@ -44,5 +44,11 @@ namespace hr_dynamics_server.Controllers.Public
             else
                 return Ok(new { success = false, errorMessage = "Validation failed!" });
         }
+
+        [HttpGet, Route("IsLoggedIn")]
+        public IActionResult IsLoggedIn()
+        {
+            return Ok(User.Identity?.IsAuthenticated ?? false);
+        }
     }
 }
