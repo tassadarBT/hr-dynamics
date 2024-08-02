@@ -86,7 +86,7 @@ BEGIN
 	values (19, 1, NULL, 1, 19, 'I', 'section-radio-list', 'Cum simtiti ca sunteti remunerat pentru munca depusa? Mentionati in campul "Comentarii" tipurile de beneficii salariale pe care vi le doriti.', 1, 1, 1);
 	-- J
 	insert into dbo.Questions([Id], [SurveyId], [ParentId], [OptionGroupId], [DisplayOrder],  [DisplayOrderText], [Type], [Text], [IsSection], [Required],  [Active]) 
-	values (20, 1, NULL, 1, 2, 'J', 'section-radio-list', 'Cat de mandru sunteti de imaginea companiei la care lucrati? Mentionati in campul "Comentarii" ce apreciati cel mai mult la angajatorul Leman?', 1, 1, 1);
+	values (20, 1, NULL, 1, 20, 'J', 'section-radio-list', 'Cat de mandru sunteti de imaginea companiei la care lucrati? Mentionati in campul "Comentarii" ce apreciati cel mai mult la angajatorul Leman?', 1, 1, 1);
 	set identity_insert dbo.Questions OFF;
 END
 GO
