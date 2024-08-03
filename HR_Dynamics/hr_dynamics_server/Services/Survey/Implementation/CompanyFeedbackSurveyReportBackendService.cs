@@ -36,7 +36,7 @@ namespace hr_dynamics_server.Services.Survey.Implementation
             var answerDbs = await _hrDynamicsDbContext.ResponseQuestionAnswers.Include(t => t.Response).AsNoTracking()
                 .Where(t => t.Response != null && (filter.CampaignId < 0 ||  t.Response.CampaignId == filter.CampaignId) 
                                                && (filter.StartTime == null || t.Response.StartTime >= filter.StartTime)
-                                               && (filter.EndTime == null || t.Response.EndTime <= filter.StartTime)).ToListAsync(cancellationToken);
+                                               && (filter.EndTime == null || t.Response.EndTime <= filter.EndTime)).ToListAsync(cancellationToken);
             foreach(var question in res.Questions)
             {
                 var questionAnswerDbs = answerDbs.Where(t => t.QuestionId == question.Id).GroupBy(t => t.Text).Select(t => new { label = t.Key, count = t.Count()}).OrderBy(t => t.label).ToList();
